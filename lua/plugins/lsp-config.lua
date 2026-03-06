@@ -9,7 +9,7 @@ return {
 	{
 		"mason-org/mason-lspconfig.nvim",
 		config = function()
-			require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "ts_ls" } })
+			require("mason-lspconfig").setup({ ensure_installed = { "vimls", "lua_ls", "ts_ls", "jdtls" } })
 		end,
 	},
 	{
@@ -17,8 +17,12 @@ return {
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+			vim.lsp.config("vimls", { capabilities = capabilities })
+			vim.lsp.enable("vimls")
+
 			vim.lsp.config("lua_ls", {
 				-- ... (keep cmd, filetypes, capabilities)
+				capabilities = capabilities,
 				settings = {
 					Lua = {
 						runtime = {
@@ -40,15 +44,16 @@ return {
 					},
 				},
 			})
-
 			vim.lsp.enable("lua_ls")
 
 			vim.lsp.config("ts_ls", {
 				capabilities = capabilities,
 				root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
 			})
-
 			vim.lsp.enable("ts_ls")
+
+			vim.lsp.config("jdtls", { capabilities = capabilities })
+			vim.lsp.enable("jdtls")
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})

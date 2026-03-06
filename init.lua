@@ -52,3 +52,12 @@ vim.diagnostic.config({
   update_in_insert = false, -- Only show when you leave Insert mode (cleaner)
   severity_sort = true,
 })
+
+--Override theme border colors
+-- Add this to the bottom of your init.lua
+vim.api.nvim_set_hl(0, "CmpNormal", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "CmpPmenu", { bg = "NONE" })
+-- Force a visible color for the borders
+vim.api.nvim_set_hl(0, "CmpPmenuBorder", { fg = "#569cd6", bg = "NONE" })
+vim.api.nvim_set_hl(0, "CmpDocBorder", { fg = "#569cd6", bg = "NONE" })
+
