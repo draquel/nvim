@@ -5,6 +5,11 @@ return {
   config = function()
     require("tokyonight").setup({
       style = "night",
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent"
+      },
       on_highlights = function(hl, c)
         -- 1. General Floating Windows
         hl.FloatBorder = { fg = c.border_highlight, bg = c.bg_float }

@@ -1,10 +1,30 @@
 -- NeoVim Properties
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
+vim.opt.expandtab = true
+vim.opt.tabstop=2
+vim.opt.softtabstop=2
+vim.opt.shiftwidth=2
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+
+vim.opt.nu = true
+vim.opt.relativenumber = true
+vim.opt.wrap = false
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+vim.opt.termguicolors = true
+vim.opt.scrolloff = 8
+
+-- Global Kepmaps
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -52,12 +72,4 @@ vim.diagnostic.config({
   update_in_insert = false, -- Only show when you leave Insert mode (cleaner)
   severity_sort = true,
 })
-
---Override theme border colors
--- Add this to the bottom of your init.lua
-vim.api.nvim_set_hl(0, "CmpNormal", { bg = "NONE" })
-vim.api.nvim_set_hl(0, "CmpPmenu", { bg = "NONE" })
--- Force a visible color for the borders
-vim.api.nvim_set_hl(0, "CmpPmenuBorder", { fg = "#569cd6", bg = "NONE" })
-vim.api.nvim_set_hl(0, "CmpDocBorder", { fg = "#569cd6", bg = "NONE" })
 
